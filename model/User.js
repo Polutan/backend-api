@@ -13,10 +13,6 @@ const userSchema = new mongoose.Schema({
         type: 'string',
         require: true,
     },
-    no_telp: {
-        type: 'string',
-        require: true,
-    }
 });
 
 module.exports = mongoose.model('User', userSchema);

@@ -6,8 +6,8 @@ const {registerValidation, loginValidation} = require('../validation');
 
 router.post('/register', async (req, res) => {
     // //validate the data
-    // const { error } =  registerValidation(req.body);
-    // if (error) return res.status(400).send(error.message);
+    // const result = registerValidation(req.body)
+    // if (result.error) { return res.status(400).send(result.error.details[0].message) }
 
     // check the email address
     const emailExist = await User.findOne({ email: req.body.email });
@@ -20,8 +20,7 @@ router.post('/register', async (req, res) => {
     const user = new User({
         nama: req.body.nama,
         email: req.body.email,
-        password: hashedPassword,
-        no_telp: req.body.no_telp,
+        password: hashedPassword
     });
     try{
         savedUser = await user.save();
@@ -33,8 +32,8 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     // // validate the data
-    // const { error } =  loginValidation(req.body);
-    // if (error) return res.status(400).send(error.detail);
+    // const result = loginValidation(req.body)
+    // if (result.error) { return res.status(400).send(result.error.details[0].message) }
 
     // check the email address
     const user = await User.findOne({ email: req.body.email });
