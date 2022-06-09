@@ -24,5 +24,5 @@ app.use('/api/user', authRoute);
 app.use('/api/posts', postRoute);
 
 
-app.listen(3000, () => console.log('listening on port'));
+app.listen(8080, () => console.log('Server is Up and running'));
 
