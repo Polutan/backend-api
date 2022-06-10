@@ -20,13 +20,13 @@ router.post('/register', async (req, res) => {
     })
 
     //Hash Password
-    // const salt = await bcrypt.genSalt(10);
-    // const hashedPassword = await bcrypt.hash(req.body.password, salt);
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
     const user = new User({
         nama: req.body.nama,
         email: req.body.email,
-        password: req.body.password
+        password: hashedPassword
     });
     try{
         savedUser = await user.save();
@@ -57,8 +57,7 @@ router.post('/login', async (req, res) => {
     })
 
     //check password
-    //const validPass = await bcrypt.compare(req.body.password, user.password);
-    const validPass = await User.findOne({ password: req.body.password });
+    const validPass = await bcrypt.compare(req.body.password, user.password);
     if(!validPass) return res.status(400).json({
         status: res.statusCode,
         message: 'Invalid Password!'
