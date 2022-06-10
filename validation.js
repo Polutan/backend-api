@@ -7,13 +7,13 @@ const registerValidation = (data) => {
         nama: Joi.string()
             .required(),
         email: Joi.string()
-            .required()
-            .email(),
+            .email()
+            .required(),
         password: Joi.string()
-            .required()
-            .min(8),
+            .min(8)
+            .required(),
     });
-    
+
     return schema.validate(data)
 }
 
@@ -21,8 +21,8 @@ const registerValidation = (data) => {
 const loginValidation = (data) => {
     const schema = Joi.object({
         email: Joi.string()
-            .required()
-            .email(),
+            .email()
+            .required(),
         password: Joi.string()
             .required(),
     });

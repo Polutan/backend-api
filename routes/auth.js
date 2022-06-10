@@ -5,12 +5,12 @@ const jwt = require('jsonwebtoken');
 const {registerValidation, loginValidation} = require('../validation');
 
 router.post('/register', async (req, res) => {
-    // //validate the data
-    // const { error } = registerValidation(req.body)
-    // if(error) return res.status(400).json({
-    //     status: res.statusCode,
-    //     message: error.details[0].message
-    // })
+    //validate the data
+    const { error } = registerValidation(req.body)
+    if(error) return res.status(400).json({
+        status: res.statusCode,
+        message: error.details[0].message
+    })
 
     // check the email address
     const emailExist = await User.findOne({ email: req.body.email });
@@ -43,11 +43,11 @@ router.post('/register', async (req, res) => {
 })
 
 router.post('/login', async (req, res) => {
-    // const { error } = loginValidation(req.body)
-    // if(error) return res.status(400).json({
-    //     status: res.statusCode,
-    //     message: error.details[0].message
-    // })
+    const { error } = loginValidation(req.body)
+    if(error) return res.status(400).json({
+        status: res.statusCode,
+        message: error.details[0].message
+    })
 
     // check the email address
     const user = await User.findOne({ email: req.body.email });
@@ -73,6 +73,3 @@ router.post('/login', async (req, res) => {
 })
 
 module.exports = router;
-
-
-
