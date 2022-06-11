@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
     res.status(200).json({
         error: false,
         status: res.statusCode,
-        message: 'Predict Success!',
+        message: 'Prediction Success!',
         score
     })
 })
