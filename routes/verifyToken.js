@@ -8,7 +8,7 @@ const verifyToken = (req, res, next) => {
         message: 'Access Denied!'
     })
     try {
-        const verified = jwt.verify(token, process.env.SECRET_KEY)        
+        const verified = jwt.decode(token, process.env.SECRET_KEY)        
         req.user = verified;
         next()
     }catch(err){

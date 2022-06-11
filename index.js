@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 
 // import routes
 const authRoute = require('./routes/auth');
-const postRoute = require('./routes/posts');
 const predictRoute = require('./routes/predict');
 const verifyToken = require('./routes/verifyToken');
 
@@ -24,8 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 
 //routes middleware
 app.use('/api/user', authRoute);
-app.use('/api/posts', verifyToken, postRoute);
-app.use('/api/predict', predictRoute);
+app.use('/api/predict', verifyToken, predictRoute);
 
 
 app.listen(8080, () => console.log('Server is Up and running'));
