@@ -3,6 +3,8 @@ const verify = require('./verifyToken');
 
 //Predictions result
 router.get('/', verify, async (req, res) => {
+    const token = req.header('auth-token')
+
     try {
         let score = 87;
         
@@ -10,7 +12,8 @@ router.get('/', verify, async (req, res) => {
         error: false,
         status: res.statusCode,
         message: 'Prediction Success!',
-        score
+        score,
+        token
     })
     }catch(err){
         res.json({
